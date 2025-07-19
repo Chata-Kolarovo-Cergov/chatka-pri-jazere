@@ -12,11 +12,13 @@
       color: #3e5b31; /* tmavá zelená */
     }
 
-    /* Úprava pozadia s obrázkom */
     header {
       position: relative;
-      height: 80vh;
-      background: url('your-photo.jpg') no-repeat center center/cover; /* Sem vlož fotku */
+      height: 400px;
+      background: url('your-photo.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .overlay {
@@ -25,12 +27,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      color: white;
+      background: rgba(0, 0, 0, 0.35);
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      color: white;
       text-align: center;
     }
 
@@ -38,10 +40,16 @@
       font-size: 3.5em;
       margin: 0;
       font-family: 'Georgia', serif;
+      z-index: 2;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     .overlay p {
       font-size: 1.5em;
+      margin-top: 0.7em;
+      z-index: 2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     .btn {
@@ -52,9 +60,10 @@
       border-radius: 4px;
       text-decoration: none;
       margin-top: 1em;
+      font-size: 1.2em;
+      z-index: 2;
     }
 
-    /* Navigácia */
     nav {
       background-color: #fff8e1; /* veľmi svetlá béžová */
       padding: 1em;
@@ -71,7 +80,6 @@
       font-size: 1.1em;
     }
 
-    /* Hlavný obsah */
     section {
       max-width: 900px;
       margin: 2em auto;
@@ -96,7 +104,6 @@
 </head>
 <body>
 
-  <!-- Úvodná sekcia s pozadím -->
   <header>
     <div class="overlay">
       <h1>Chatka pri jazere</h1>
@@ -105,7 +112,6 @@
     </div>
   </header>
 
-  <!-- Navigácia -->
   <nav>
     <a href="index.html">Domov</a>
     <a href="galeria.html">Galéria</a>
