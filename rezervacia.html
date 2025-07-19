@@ -103,6 +103,20 @@
     <button type="submit">Odoslať rezerváciu</button>
   </form>
 
+  </div>
+    <script>
+    document.getElementById('rezervaciaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('rezervaciaForm').style.display = 'none';
+        document.getElementById('thankyou').style.display = 'block';
+        // For email sending functionality, you’ll need backend code (PHP, Node.js, etc.)
+        // Example:
+        // fetch('/send-rezervacia', { method: 'POST', body: new FormData(this) });
+    });
+    </script>
+</body>
+</html>
+
   <div class="buttons">
     <a href="index.html">Domov</a>
     <a href="rezervacia.html">Rezervácia</a>
