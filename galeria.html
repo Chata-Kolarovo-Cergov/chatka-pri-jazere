@@ -3,19 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galéria - Chatka pri jazere</title>
+  <title>Galéria – Chatka pri jazere</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f0e6; /* svetlá béžová */
-      color: #3e5b31; /* tmavá zelená */
+      background-color: #f4f0e6;
+      color: #3e5b31;
     }
+
     header {
       background-color: #6b8e23; /* olivovo-zelená */
       color: white;
       padding: 1em;
       text-align: center;
     }
+
+    footer {
+      text-align: center;
+      padding: 2em;
+      font-size: 0.9em;
+      color: #666;
+      background-color: #d9e1c2; /* svetlá zelená */
+    }
+
+    /* Galéria */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -23,18 +35,45 @@
       justify-content: center;
       margin-top: 2em;
     }
+
     .gallery img {
       width: 300px;
       height: 200px;
       object-fit: cover;
       border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-    footer {
-      text-align: center;
-      padding: 2em;
-      font-size: 0.9em;
-      color: #666;
-      background-color: #d9e1c2; /* svetlá zelená */
+
+    /* Navigácia */
+    nav {
+      background-color: #fff8e1;
+      padding: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3e5b31;
+      font-weight: bold;
+    }
+
+    /* Tlačidlá pre navigáciu */
+    .buttons {
+      margin-top: 2em;
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+    }
+
+    .buttons a {
+      padding: 0.7em 1.5em;
+      background-color: #6b8e23;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -44,12 +83,33 @@
     <h1>Galéria Chatky pri Jazere</h1>
   </header>
 
-  <div class="gallery">
-    <img src="https://via.placeholder.com/300x200?text=Obrázok+1" alt="Interiér chatky">
-    <img src="https://via.placeholder.com/300x200?text=Obrázok+2" alt="Výhľad na jazero">
-    <img src="https://via.placeholder.com/300x200?text=Obrázok+3" alt="Okolie chatky">
-    <img src="https://via.placeholder.com/300x200?text=Obrázok+4" alt="Okolie Čergov">
-  </div>
+  <!-- Navigácia -->
+  <nav>
+    <a href="index.html">Domov</a>
+    <a href="galeria.html">Galéria</a>
+    <a href="rezervacia.html">Rezervácia</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+
+  <section>
+    <h2>Naša galéria</h2>
+    <p>Prezerajte si krásne fotografie našej chatky a okolia.</p>
+
+    <!-- Galéria obrázkov -->
+    <div class="gallery">
+      <img src="images/obrazok1.jpg" alt="Obrázok 1">
+      <img src="images/obrazok2.jpg" alt="Obrázok 2">
+      <img src="images/obrazok3.jpg" alt="Obrázok 3">
+      <img src="images/obrazok4.jpg" alt="Obrázok 4">
+    </div>
+
+    <!-- Odkazy pre navigáciu -->
+    <div class="buttons">
+      <a href="index.html">Domov</a>
+      <a href="rezervacia.html">Rezervácia</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </section>
 
   <footer>
     &copy; 2025 Chatka pri jazere – Kolárovo | Vytvorené s ♥
