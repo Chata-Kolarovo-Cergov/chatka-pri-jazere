@@ -5,139 +5,109 @@
     <title>Galéria</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="background-overlay"></div>
-    <div class="content">
-        <h2>Galéria</h2>
-        <div class="gallery">
-            <!-- Ďalšie obrázky -->
-        </div>
-    </div>
-</body>
-</html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Galéria</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 40px;
-            background: #f5efea;
-            color: #4a3a2f;
-        }
-        nav {
-            background: #ddc7b1;
-            padding: 12px 24px;
-            border-radius: 10px;
-            margin-bottom: 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            gap: 24px;
-        }
-        nav a {
-            color: #4a3a2f;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            letter-spacing: 0.04em;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
-        nav a:hover {
-            color: #7d5c36;
-            text-shadow: 0 2px 10px #e1c8a4;
-        }
-        h1 {
-            font-size: 2.3em;
-            margin-bottom: 18px;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            letter-spacing: 0.06em;
-        }
-        h2 {
-            margin-top: 40px;
-            color: #7d5c36;
-            font-size: 1.5em;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            letter-spacing: 0.04em;
-        }
-        .gallery-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-        .gallery-section img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            border: 2px solid #d7c4a3;
-            background: #fff8f2;
-        }
-        .gallery-section img:hover {
-            transform: scale(1.25);
-            z-index: 2;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-            border-color: #7d5c36;
-        }
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: auto;
-            background: rgba(0,0,0,0.72);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal.active {
-            display: flex;
-        }
-        .modal-content {
-            max-width: 80vw;
-            max-height: 80vh;
-            border-radius: 12px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.24);
-            background: #fff8f2;
-            position: relative;
-            padding: 12px;
-            animation: popIn 0.3s;
-        }
-        @keyframes popIn {
-            from { transform: scale(0.85); opacity: 0;}
-            to { transform: scale(1); opacity: 1;}
-        }
-        .modal-content img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 8px;
-            display: block;
-            margin: auto;
-            border: 2px solid #d7c4a3;
-        }
-        .modal-close {
-            position: absolute;
-            top: 8px;
-            right: 14px;
-            font-size: 32px;
-            color: #7d5c36;
-            cursor: pointer;
-            background: none;
-            border: none;
-            outline: none;
-            z-index: 1;
-        }
-        @media (max-width: 600px) {
-            .gallery-section img {
-                width: 120px;
-                height: 90px;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+.background-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('your-photo.jpg') center center/cover no-repeat;
+    filter: brightness(0.5) blur(2px);
+    z-index: 0;
+}
+.content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.form-box {
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 40px auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+button {
+    padding: 10px 20px;
+    background: #337ab7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+.gal-img {
+    max-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.center {
+    text-align: center;
+}
+.green {
+    color: #2ecc40; /* Green color, same as index page */
+    font-weight: bold;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+.green-link {
+    color: #2ecc40;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
+    transition: color 0.2s;
+}
+.green-link:hover {
+    color: #27ae60;
+    text-decoration: underline;
+}
+.page-links {
+    text-align: center;
+    margin-top: 30px;
+}
+@media (max-width: 600px) {
+    .content {
+        padding: 10px;
+        max-width: 95vw;
+    }
+    .form-box {
+        max-width: 95vw;
+        margin: 10px auto;
+        padding: 10px;
+    }
+    .gal-img {
+        max-width: 95vw;
+    }
+    .green {
+        font-size: 1.5em;
+    }
             }
             nav {
                 flex-direction: column;
