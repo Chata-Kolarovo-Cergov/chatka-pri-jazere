@@ -6,15 +6,51 @@
   <title>Rezervácia - Chatka pri jazere</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f0e6;
-      color: #3e5b31;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f0e6; /* svetlá béžová */
+      color: #3e5b31; /* tmavá zelená */
     }
+
     header {
-      background-color: #6b8e23; /* olivovo-zelená */
+      position: relative;
+      height: 400px;
+      background: url('okolie4.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       color: white;
-      padding: 1em;
       text-align: center;
+    }
+
+    .overlay h1 {
+      font-size: 3.5em;
+      margin: 0;
+      font-family: 'Georgia', serif;
+      z-index: 2;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .overlay p {
+      font-size: 1.5em;
+      margin-top: 0.7em;
+      z-index: 2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    
     }
     nav {
       background-color: #fff8e1;
