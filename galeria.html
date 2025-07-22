@@ -1,236 +1,198 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <title>Galéria</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galéria - Chatka pri jazere</title>
+  <style>
+    /* Skopíruj sem CSS zo svojho index.html, napríklad: */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f0e6;
+      color: #3e5b31;
+    }
+    nav {
+      background-color: #fff8e1;
+      padding: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #3e5b31;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #6b8e23;
+    }
+    h1 {
+      font-family: 'Georgia', serif;
+      font-size: 3em;
+      text-align: center;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    h2 {
+      margin-top: 2em;
+      font-family: 'Segoe UI', sans-serif;
+      color: #3e5b31;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .gallery-section {
+      max-width: 900px;
+      margin: 2em auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .gallery-section img {
+      width: 220px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border: 2px solid transparent;
+      background: #fff8f2;
+    }
+    .gallery-section img:hover {
+      transform: scale(1.1);
+      border-color: #6b8e23;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      z-index: 1;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.75);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 12px;
+      background: #fff8f2;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      padding: 10px;
+      position: relative;
+    }
+    .modal-content img {
+      max-width: 100%;
+      max-height: 70vh;
+      border-radius: 8px;
+      display: block;
+      margin: auto;
+      border: 2px solid #d7c4a3;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      color: #6b8e23;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="background-overlay"></div>
-    <div class="content">
-        <h2>Galéria</h2>
-        <div class="gallery">
-            <!-- Ďalšie obrázky -->
-        </div>
+
+  <nav>
+    <a href="index.html">Domov</a>
+    <a href="galeria.html">Galéria</a>
+    <a href="rezervacia.html">Rezervácia</a>
+    <a href="index.html#kontakt">Kontakt</a>
+  </nav>
+
+  <h1>Galéria</h1>
+
+  <h2>Interiér</h2>
+  <div class="gallery-section" id="interier">
+    <img src="inter1.jpg" alt="Interiér 1" data-full="inter1.jpg">
+    <img src="inter2.jpg" alt="Interiér 2" data-full="inter2.jpg">
+    <img src="inter3.jpg" alt="Interiér 3" data-full="inter3.jpg">
+    <img src="inter4.jpg" alt="Interiér 4" data-full="inter4.jpg">
+    <img src="inter5.jpg" alt="Interiér 5" data-full="inter5.jpg">
+    <img src="inter7.jpg" alt="Interiér 7" data-full="inter7.jpg">
+    <img src="inter8.jpg" alt="Interiér 8" data-full="inter8.jpg">
+  </div>
+
+  <h2>Exteriér</h2>
+  <div class="gallery-section" id="exterier">
+    <img src="ex1.jpg" alt="Exteriér 1" data-full="ex1.jpg">
+    <img src="ex2.jpg" alt="Exteriér 2" data-full="ex2.jpg">
+    <img src="ex3.jpg" alt="Exteriér 3" data-full="ex3.jpg">
+    <img src="ex4.jpg" alt="Exteriér 4" data-full="ex4.jpg">
+    <img src="ex5.jpg" alt="Exteriér 5" data-full="ex5.jpg">
+  </div>
+
+  <h2>Okolie</h2>
+  <div class="gallery-section" id="okolie">
+    <img src="jazero.jpg" alt="Okolie 1" data-full="jazero.jpg">
+    <img src="okolie.jpg" alt="Okolie 2" data-full="okolie.jpg">
+    <img src="okolie3.jpg" alt="Okolie 3" data-full="okolie3.jpg">
+    <img src="okolie4.jpg" alt="Okolie 4" data-full="okolie4.jpg">
+  </div>
+
+  <!-- Modal for full size images -->
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <img id="modalImg" src="" alt="Full size" />
     </div>
-</body>
-</html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Galéria</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 40px;
-            background: #f5efea;
-            color: #4a3a2f;
-        }
-        nav {
-            background: #ddc7b1;
-            padding: 12px 24px;
-            border-radius: 10px;
-            margin-bottom: 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            gap: 24px;
-        }
-        nav a {
-            color: #4a3a2f;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            letter-spacing: 0.04em;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
-        nav a:hover {
-            color: #7d5c36;
-            text-shadow: 0 2px 10px #e1c8a4;
-        }
-        h1 {
-            font-size: 2.3em;
-            margin-bottom: 18px;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            letter-spacing: 0.06em;
-        }
-        h2 {
-            margin-top: 40px;
-            color: #7d5c36;
-            font-size: 1.5em;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            letter-spacing: 0.04em;
-        }
-        .gallery-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-        .gallery-section img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            border: 2px solid #d7c4a3;
-            background: #fff8f2;
-        }
-        .gallery-section img:hover {
-            transform: scale(1.25);
-            z-index: 2;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-            border-color: #7d5c36;
-        }
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: auto;
-            background: rgba(0,0,0,0.72);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal.active {
-            display: flex;
-        }
-        .modal-content {
-            max-width: 80vw;
-            max-height: 80vh;
-            border-radius: 12px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.24);
-            background: #fff8f2;
-            position: relative;
-            padding: 12px;
-            animation: popIn 0.3s;
-        }
-        @keyframes popIn {
-            from { transform: scale(0.85); opacity: 0;}
-            to { transform: scale(1); opacity: 1;}
-        }
-        .modal-content img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 8px;
-            display: block;
-            margin: auto;
-            border: 2px solid #d7c4a3;
-        }
-        .modal-close {
-            position: absolute;
-            top: 8px;
-            right: 14px;
-            font-size: 32px;
-            color: #7d5c36;
-            cursor: pointer;
-            background: none;
-            border: none;
-            outline: none;
-            z-index: 1;
-        }
-        @media (max-width: 600px) {
-            .gallery-section img {
-                width: 120px;
-                height: 90px;
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html">Domov</a>
-        <a href="galeria.html">Galéria</a>
-        <a href="rezervacia.html">Rezervácia</a>
-        <a href="index.html#kontakty.html">Kontakt</a>
-    </nav>
+  </div>
 
-    <h1>Galéria</h1>
+  <script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModalBtn = document.getElementById('closeModal');
 
-    <!-- Interiér section -->
-    <h2>Interiér</h2>
-    <div class="gallery-section" id="interiér">
-        <img src="inter1.jpg" alt="Interier 1" data-full="inter1.jpg">
-        <img src="inter2.jpg" alt="Interier 2" data-full="inter2.jpg">
-        <img src="inter3.jpg" alt="Interier 3" data-full="inter3.jpg">
-        <img src="inter4.jpg" alt="Interier 4" data-full="inter4.jpg">
-        <img src="inter5.jpg" alt="Interier 5" data-full="inter5.jpg">
-        <img src="inter7.jpg" alt="Interier 7" data-full="inter7.jpg">
-        <img src="inter8.jpg" alt="Interier 8" data-full="inter8.jpg">
-    </div>
+    function openModal(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('active');
+    }
 
-    <!-- Exteriér section -->
-    <h2>Exteriér</h2>
-    <div class="gallery-section" id="exteriér">
-        <img src="ex1.jpg" alt="Exterier 1" data-full="ex1.jpg">
-        <img src="ex2.jpg" alt="Exterier 2" data-full="ex2.jpg">
-        <img src="ex3.jpg" alt="Exterier 3" data-full="ex_3.jpg">
-        <img src="ex4.jpg" alt="Exterier 4" data-full="ex4.jpg">
-        <img src="ex5.jpg" alt="Exterier 5" data-full="ex5.jpg">
-    </div>
+    function closeModal() {
+      modal.classList.remove('active');
+      modalImg.src = '';
+    }
 
-    <!-- Okolie section -->
-    <h2>Okolie</h2>
-    <div class="gallery-section" id="okolie">
-        <img src="jazero.jpg" alt="Okolie 1" data-full="jazero.jpg">
-        <img src="okolie.jpg" alt="Okolie 2" data-full="okolie.jpg">
-        <img src="okolie3.jpg" alt="Okolie 3" data-full="okolie3.jpg">
-        <img src="okolie4.jpg" alt="Okolie 4" data-full="okolie4.jpg">
-    </div>
+    document.querySelectorAll('.gallery-section img').forEach(img => {
+      img.addEventListener('click', () => {
+        openModal(img.dataset.full, img.alt);
+      });
+    });
 
-    <!-- Modal for full-size images -->
-    <div class="modal" id="imageModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeModal">&times;</button>
-            <img id="modalImg" src="" alt="Full size">
-        </div>
-    </div>
+    closeModalBtn.addEventListener('click', closeModal);
 
-    <script>
-        // Get modal elements
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImg');
-        const closeModalBtn = document.getElementById('closeModal');
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
 
-        // Function to open modal
-        function openModal(src, alt) {
-            modalImg.src = src;
-            modalImg.alt = alt;
-            modal.classList.add('active');
-        }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
 
-        // Function to close modal
-        function closeModal() {
-            modal.classList.remove('active');
-            modalImg.src = '';
-        }
-
-        // Add click event for images
-        document.querySelectorAll('.gallery-section img').forEach(img => {
-            img.addEventListener('click', function() {
-                openModal(this.dataset.full, this.alt);
-            });
-        });
-
-        // Close modal on button click
-        closeModalBtn.addEventListener('click', closeModal);
-
-        // Close modal clicking around image
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Optional: close modal on Esc key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
-    </script>
 </body>
 </html>
