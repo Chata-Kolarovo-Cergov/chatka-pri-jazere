@@ -216,3 +216,8 @@ a:focus, button:focus {
 .main-nav a:hover {
   color: #6b8e23;
 }
+.gallery-header {
+  text-align: center;
+  font-size: 2.5em;
+  margin-top: 1em;
+}
