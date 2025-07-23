@@ -17,6 +17,17 @@ nav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+
 nav img {
   height: 36px;
 }
@@ -128,6 +139,7 @@ img {
   display: block;
   margin: 1em auto;
 }
+
 
 /* Responsivita */
 @media (max-width: 600px) {
