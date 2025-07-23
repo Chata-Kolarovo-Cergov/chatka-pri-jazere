@@ -195,3 +195,24 @@ a:focus, button:focus {
     margin-bottom: 0.5em;
   }
 }
+.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  background-color: #fff8e1;
+  padding: 1em;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #3e5b31;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.main-nav a:hover {
+  color: #6b8e23;
+}
