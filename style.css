@@ -224,3 +224,6 @@ a:focus, button:focus {
 .gallery-section h2 {
   text-align: center;
 }
+.centered-heading {
+  text-align: center;
+}
