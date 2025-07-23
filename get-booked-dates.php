@@ -8,6 +8,7 @@ $icalUrls = [
 ];
 
 $booked = [];
+$debugInfo = [];
 
 foreach ($icalUrls as $url) {
     $ical = new ICal($url);
