@@ -12,6 +12,8 @@
 <meta property="og:image" content="logo1.png">
   <title>Rezervácia - Chatka pri jazere</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
 
@@ -45,10 +47,10 @@
     <input type="tel" name="telefon" id="telefon" required>
 
     <label for="check-in">Check-in:</label>
-    <input type="date" id="check-in" name="check-in" required>
+    <input type="text" id="check-in" name="check-in" required>
 
     <label for="check-out">Check-out:</label>
-    <input type="date" id="check-out" name="check-out" required>
+    <input type="text" id="check-out" name="check-out" required>
 
     <label for="guests">Počet osôb:</label>
     <input type="number" id="guests" name="guests" min="1" max="6" required>
@@ -63,6 +65,31 @@
     <img src="logo1.png" alt="Logo">
     &copy; 2025 Chatka pri jazere – Kolárovo | Vytvorené s ♥
   </footer>
+<script>
+fetch('get-booked-dates.php')
+  .then(response => response.json())
+  .then(bookedDates => {
+    // Initialize flatpickr for check-in field
+    flatpickr("#check-in", {
+      dateFormat: "Y-m-d",
+      disable: bookedDates,         // Disable all booked dates
+      minDate: "today",             // Prevent picking past dates
+      onChange: function(selectedDates, dateStr, instance) {
+        // When a check-in date is chosen, set that as the earliest check-out date
+        if (selectedDates.length > 0) {
+          checkOutPicker.set('minDate', dateStr);
+        }
+      }
+    });
 
+    // Initialize flatpickr for check-out field
+    var checkOutPicker = flatpickr("#check-out", {
+      dateFormat: "Y-m-d",
+      disable: bookedDates,         // Disable all booked dates
+      minDate: "today"
+    });
+  });
+</script>
+  
 </body>
 </html>
