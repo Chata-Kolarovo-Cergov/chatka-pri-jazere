@@ -29,7 +29,6 @@
       <a href="galeria.html">Galéria</a>
       <a href="rezervacia.html">Rezervácia</a>
       <a href="index.html#kontakt">Kontakt</a>
-    </div>
   </nav>
   
   <form action="https://formsubmit.co/kolarovo.chata@gmail.com" method="POST">
@@ -66,30 +65,27 @@
     &copy; 2025 Chatka pri jazere – Kolárovo | Vytvorené s ♥
   </footer>
 <script>
+var checkOutPicker; // Declare only once at the top!
 fetch('get-booked-dates.php')
   .then(response => response.json())
   .then(bookedDates => {
-    // Initialize flatpickr for check-in field
     flatpickr("#check-in", {
       dateFormat: "Y-m-d",
-      disable: bookedDates,         // Disable all booked dates
-      minDate: "today",             // Prevent picking past dates
+      disable: bookedDates,
+      minDate: "today",
       onChange: function(selectedDates, dateStr, instance) {
-        // When a check-in date is chosen, set that as the earliest check-out date
         if (selectedDates.length > 0) {
           checkOutPicker.set('minDate', dateStr);
         }
       }
     });
 
-    // Initialize flatpickr for check-out field
-    var checkOutPicker = flatpickr("#check-out", {
+    checkOutPicker = flatpickr("#check-out", {
       dateFormat: "Y-m-d",
-      disable: bookedDates,         // Disable all booked dates
+      disable: bookedDates,
       minDate: "today"
     });
   });
 </script>
-  
 </body>
 </html>
