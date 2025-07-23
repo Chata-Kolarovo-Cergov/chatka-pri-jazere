@@ -6,7 +6,7 @@
   <meta name="description" content="Rezervujte si termín pre chatku pri jazere v Kolárove.">
   <meta property="og:title" content="Rezervácia – Chatka pri jazere">
   <meta property="og:description" content="Rezervujte si pohodlný pobyt pri jazere Čergov až pre 6 osôb.">
-  <meta property="og:image" content="images/logo.png">
+  <meta property="og:image" content="logo.png">
   <meta property="og:type" content="website">
   <link rel="icon" href="favicon.png" type="png">
 <meta property="og:image" content="logo.png">
@@ -15,14 +15,6 @@
 </head>
 <body>
 
-  <nav>
-    <img src="images/logo.png" alt="Logo Chatka pri jazere">
-    <a href="index.html">Domov</a>
-    <a href="galeria.html">Galéria</a>
-    <a href="rezervacia.html">Rezervácia</a>
-    <a href="index.html#kontakt">Kontakt</a>
-  </nav>
-
   <header>
     <div class="overlay">
       <h1>Rezervácia Chatky pri jazere</h1>
@@ -30,7 +22,19 @@
     </div>
   </header>
 
-  <form action="https://formspree.io/f/mnqeqrzy" method="POST">
+    <nav>
+    <img src="images/logo.png" alt="Logo Chatka pri jazere">
+    <a href="index.html">Domov</a>
+    <a href="galeria.html">Galéria</a>
+    <a href="rezervacia.html">Rezervácia</a>
+    <a href="index.html#kontakt">Kontakt</a>
+  </nav>
+  
+  <form action="https://formsubmit.co/kolarovo.chata@gmail.com" method="POST">
+  <input type="hidden" name="_next" value="https://chata-kolarovo-cergov.github.io/chatka-pri-jazere/dakujem.html">
+  <input type="hidden" name="_subject" value="Nová rezervácia z webu">
+  <input type="hidden" name="_autoresponse" value="Ďakujeme za Vašu rezerváciu! Čoskoro Vás budeme kontaktovať.">
+    
     <label for="meno">Meno a priezvisko</label>
     <input type="text" name="meno" id="meno" required>
 
@@ -40,8 +44,14 @@
     <label for="telefon">Telefón</label>
     <input type="tel" name="telefon" id="telefon" required>
 
-    <label for="datum">Požadovaný termín pobytu</label>
-    <input type="text" name="datum" id="datum" required>
+    <label for="check-in">Check-in:</label>
+    <input type="date" id="check-in" name="check-in" required>
+
+    <label for="check-out">Check-out:</label>
+    <input type="date" id="check-out" name="check-out" required>
+
+    <label for="guests">Počet osôb:</label>
+    <input type="number" id="guests" name="guests" min="1" max="6" required>
 
     <label for="poznamka">Poznámka</label>
     <textarea name="poznamka" id="poznamka" rows="4"></textarea>
