@@ -159,3 +159,39 @@ a:focus, button:focus {
   outline: 3px solid #6b8e23;
   outline-offset: 2px;
 }
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5em;
+}
+
+.nav-container img {
+  height: 50px;
+}
+
+.nav-container a {
+  font-size: 1.1em;
+  text-decoration: none;
+  color: #3e5b31;
+  font-weight: bold;
+}
+
+.nav-container a:hover {
+  color: #6b8e23;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .nav-container img {
+    margin-bottom: 0.5em;
+  }
+}
