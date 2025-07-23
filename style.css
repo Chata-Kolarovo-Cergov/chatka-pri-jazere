@@ -221,3 +221,6 @@ a:focus, button:focus {
   font-size: 2.5em;
   margin-top: 1em;
 }
+.gallery-section h2 {
+  text-align: center;
+}
