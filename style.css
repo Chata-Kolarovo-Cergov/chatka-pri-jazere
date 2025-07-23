@@ -227,3 +227,7 @@ a:focus, button:focus {
 .centered-heading {
   text-align: center;
 }
+.center-btn {
+  display: block;
+  margin: 20px auto;
+}
