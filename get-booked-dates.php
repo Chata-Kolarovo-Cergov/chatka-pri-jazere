@@ -3,7 +3,7 @@ require_once 'ical/class.iCalReader.php';
 
 // List of iCal URLs (add your Airbnb/Booking.com .ics links here)
 $icalUrls = [
-    'https://www.airbnb.com/calendar/ical/your-link.ics',
+    'https://ical.booking.com/v1/export?t=4c166132-c8c5-409e-99ea-562f7bffbd0e',
     // Add more .ics links if you have them
 ];
 
