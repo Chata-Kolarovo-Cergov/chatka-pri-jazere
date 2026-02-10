@@ -255,17 +255,14 @@ a:focus, button:focus {
 }
 /* ===== ŠTÝLY PRE SEKCIU S PODMIENKAMI REZERVÁCIE ===== */
 
-.terms-section {
-  background-color: #f5f5f5;
-  padding: 40px 20px;
-  margin: 40px 0;
-  border-radius: 8px;
+.terms-section 
+{ background: white; padding: 1.5em; 
+ margin: 2em auto; 
+ max-width: 900px; 
+ border-radius: 8px; 
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
 }
 
-.terms-section .container {
-  max-width: 900px;
-  margin: 0 auto;
-}
 
 .terms-section h2 {
   text-align: center;
