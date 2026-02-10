@@ -30,7 +30,28 @@
       <a href="rezervacia.html">Rezervácia</a>
       <a href="index.html#kontakt">Kontakt</a>
   </nav>
-  
+    </nav>
+
+  <section class="terms-section">
+    <div class="container">
+      <h2>📋 Podmienky rezervácie a zrušenia</h2>
+      
+      <h3> Platba</h3>
+      <ul>
+        <li>Pri rezervácii je nutné uhradiť zálohu vo výške <strong>50 %</strong> z ceny pobytu</li>
+        <li>V prípade, že záloha nebude uhradená do <strong>3 dní</strong>, rezervácia sa ruší</li>
+        <li><strong>IBAN účet pre zálohu:</strong> <code>SK55 8330 0000 0028 0293 3995</code></li>
+      </ul>
+
+      <h3> Storno podmienky</h3>
+      <ul>
+        <li>V prípade zrušenia <strong>viac ako 14 dní pred pobytom</strong>, bude záloha <strong>vrátená</strong></li>
+        <li>V prípade zrušenia <strong>menej ako 14 dní pred pobytom</strong>, je možné dohodnúť si <strong>iný termín</strong>, aby záloha neprepadla</li>
+      </ul>
+    </div>
+  </section>
+
+  <form action="https://formsubmit.co/kolarovo.chata@gmail.com" method="POST">
   <form action="https://formsubmit.co/kolarovo.chata@gmail.com" method="POST">
   <input type="hidden" name="_next" value="https://chata-kolarovo-cergov.github.io/chatka-pri-jazere/dakujem.html">
   <input type="hidden" name="_subject" value="Nová rezervácia z webu">
@@ -57,7 +78,15 @@
     <label for="poznamka">Poznámka:</label>
     <textarea name="poznamka" id="poznamka" rows="4"></textarea>
 
+    <div class="checkbox-container">
+      <label for="agree-terms">
+        <input type="checkbox" id="agree-terms" name="agree-terms" required>
+        Súhlasím s podmienkami rezervácie a zrušenia
+      </label>
+    </div>
+
     <button type="submit" class="center-btn">Odoslať rezerváciu</button>
+
   </form>
 
   <footer>
@@ -89,4 +118,5 @@ fetch('get-booked-dates.php')
 </script>
 </body>
 </html>
+
 
