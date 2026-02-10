@@ -123,9 +123,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const checkIn = document.getElementById("check-in").value;
         const checkOut = document.getElementById("check-out").value;
 
-        const adults = parseInt(document.getElementById("guests").value);
-        const kidsUnder6 = parseInt(document.getElementById("kids-under-6").value);
-        const kidsOver6 = parseInt(document.getElementById("kids-over-6").value);
+      const adults = parseInt(document.getElementById("guests").value) || 0;
+const kidsUnder6 = parseInt(document.getElementById("kids-under-6").value) || 0;
+const kidsOver6 = parseInt(document.getElementById("kids-over-6").value) || 0;
+
 
         if (!checkIn || !checkOut || !adults) return;
 
@@ -172,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
