@@ -97,6 +97,7 @@
     <img src="logo1.png" alt="Logo">
     &copy; 2025 Chatka pri jazere – Kolárovo | Vytvorené s ♥
   </footer>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -120,56 +121,61 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function calculatePrice() {
-    const checkIn = document.getElementById("check-in").value;
-    const checkOut = document.getElementById("check-out").value;
+        const checkIn = document.getElementById("check-in").value;
+        const checkOut = document.getElementById("check-out").value;
 
-    const adults = parseInt(document.getElementById("guests").value) || 0;
-    const kidsUnder6 = parseInt(document.getElementById("kids-under-6").value) || 0;
-    const kidsOver6 = parseInt(document.getElementById("kids-over-6").value) || 0;
+        const adults = parseInt(document.getElementById("guests").value) || 0;
+        const kidsUnder6 = parseInt(document.getElementById("kids-under-6").value) || 0;
+        const kidsOver6 = parseInt(document.getElementById("kids-over-6").value) || 0;
 
-    if (!checkIn || !checkOut || adults === 0) return;
+        if (!checkIn || !checkOut || adults === 0) return;
 
-    const start = new Date(checkIn);
-    const end = new Date(checkOut);
+        const start = new Date(checkIn);
+        const end = new Date(checkOut);
 
-    const diffTime = end - start;
-    const nights = diffTime / (1000 * 60 * 60 * 24);
+        const diffTime = end - start;
+        const nights = diffTime / (1000 * 60 * 60 * 24);
 
-    if (nights <= 0) {
-        document.getElementById("price-info").innerText = "";
-        return;
+        if (nights <= 0) {
+            document.getElementById("price-info").innerText = "";
+            return;
+        }
+
+        // Ceny
+        const adultPrice = 30;
+        const kidOver6Price = 30;
+        const kidUnder6Price = 0;
+
+        let pricePerNight;
+
+        // Špeciálne pravidlo:
+        // 1 dospelý + žiadne deti nad 6 rokov → 50 €
+        if (adults === 1 && kidsOver6 === 0) {
+            pricePerNight = 50;
+        } else {
+            pricePerNight =
+                adults * adultPrice +
+                kidsOver6 * kidOver6Price +
+                kidsUnder6 * kidUnder6Price;
+        }
+
+        const total = nights * pricePerNight;
+
+        document.getElementById("price-info").innerText =
+            `Počet nocí: ${nights} | Dospelí: ${adults} | Deti do 6 r.: ${kidsUnder6} | Deti nad 6 r.: ${kidsOver6} | Cena: ${total} €`;
     }
 
-    // Ceny
-    const adultPrice = 30;
-    const kidOver6Price = 30;
-    const kidUnder6Price = 0;
-
-    let pricePerNight;
-
-    // Špeciálne pravidlo:
-    // 1 dospelý + žiadne deti nad 6 rokov → 50 €
-    if (adults === 1 && kidsOver6 === 0) {
-        pricePerNight = 50;
-    } else {
-        pricePerNight =
-            adults * adultPrice +
-            kidsOver6 * kidOver6Price +
-            kidsUnder6 * kidUnder6Price;
-    }
-
-    const total = nights * pricePerNight;
-
-    document.getElementById("price-info").innerText =
-        `Počet nocí: ${nights} | Dospelí: ${adults} | Deti do 6 r.: ${kidsUnder6} | Deti nad 6 r.: ${kidsOver6} | Cena: ${total} €`;
-}
-
+    document.getElementById("guests").addEventListener("change", calculatePrice);
+    document.getElementById("kids-under-6").addEventListener("change", calculatePrice);
+    document.getElementById("kids-over-6").addEventListener("change", calculatePrice);
 
 });
 </script>
 
+
 </body>
 </html>
+
 
 
 
