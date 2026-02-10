@@ -73,7 +73,12 @@
 <p id="price-info" style="font-weight: bold; margin-top: 10px;"></p>
     <label for="guests">Počet osôb:</label>
     <input type="number" id="guests" name="guests" min="1" max="6" required>
-
+    
+<label for="kids-under-6">Deti do 6 rokov:</label> 
+    <input type="number" id="kids-under-6" name="kids-under-6" min="0" max="6" value="0"> 
+    <label for="kids-over-6">Deti nad 6 rokov:</label> 
+    <input type="number" id="kids-over-6" name="kids-over-6" min="0" max="6" value="0">
+    
     <label for="poznamka">Poznámka:</label>
     <textarea name="poznamka" id="poznamka" rows="4"></textarea>
 
@@ -95,7 +100,6 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
-    // --- FLATPICKR ---
     var checkOutPicker;
 
     flatpickr("#check-in", {
@@ -115,13 +119,15 @@ document.addEventListener("DOMContentLoaded", function() {
         onChange: calculatePrice
     });
 
-    // --- VÝPOČET CENY ---
     function calculatePrice() {
         const checkIn = document.getElementById("check-in").value;
         const checkOut = document.getElementById("check-out").value;
-        const guests = parseInt(document.getElementById("guests").value);
 
-        if (!checkIn || !checkOut || !guests) return;
+        const adults = parseInt(document.getElementById("guests").value);
+        const kidsUnder6 = parseInt(document.getElementById("kids-under-6").value);
+        const kidsOver6 = parseInt(document.getElementById("kids-over-6").value);
+
+        if (!checkIn || !checkOut || !adults) return;
 
         const start = new Date(checkIn);
         const end = new Date(checkOut);
@@ -134,27 +140,39 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        // Ceny
+        const adultPrice = 30;
+        const kidOver6Price = 30;
+        const kidUnder6Price = 0;
+
         let pricePerNight;
 
-        if (guests === 1) {
-            pricePerNight = 50; // 1 osoba = 50 € / noc
+        // Špeciálne pravidlo: 1 dospelý + žiadne deti
+        if (adults === 1 && kidsUnder6 === 0 && kidsOver6 === 0) {
+            pricePerNight = 50;
         } else {
-            pricePerNight = guests * 30; // 2+ osoby = 30 € × počet osôb
+            pricePerNight =
+                adults * adultPrice +
+                kidsOver6 * kidOver6Price +
+                kidsUnder6 * kidUnder6Price;
         }
 
         const total = nights * pricePerNight;
 
         document.getElementById("price-info").innerText =
-            `Počet nocí: ${nights} | Počet osôb: ${guests} | Cena: ${total} €`;
+            `Počet nocí: ${nights} | Dospelí: ${adults} | Deti do 6 r.: ${kidsUnder6} | Deti nad 6 r.: ${kidsOver6} | Cena: ${total} €`;
     }
 
     document.getElementById("guests").addEventListener("change", calculatePrice);
+    document.getElementById("kids-under-6").addEventListener("change", calculatePrice);
+    document.getElementById("kids-over-6").addEventListener("change", calculatePrice);
 
 });
 </script>
 
 </body>
 </html>
+
 
 
 
