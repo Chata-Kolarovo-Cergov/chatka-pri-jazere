@@ -17,16 +17,6 @@ nav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 2em;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
 
 nav img {
   height: 36px;
@@ -256,7 +246,7 @@ a:focus, button:focus {
 /* ===== ŠTÝLY PRE SEKCIU S PODMIENKAMI REZERVÁCIE ===== */
 
 .terms-section 
-{ background: white; padding: 1.5em; 
+{background: white; padding: 1.5em; 
  margin: 2em auto; 
  max-width: 900px; 
  border-radius: 8px; 
