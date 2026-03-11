@@ -1,29 +1,13 @@
 <?php
-require_once 'ical/class.iCalReader.php';
+// Updated get-booked-dates.php
 
-// List of iCal URLs (add your Airbnb/Booking.com .ics links here)
-$icalUrls = [
-    
-    'https://calendar.google.com/calendar/ical/marekholic0%40gmail.com/public/basic.ics',  // ✅ VAŠSKÝ GOOGLE CALENDAR
-];
-
-$booked = [];
-$debugInfo = [];
-
-foreach ($icalUrls as $url) {
-    $ical = new ICal($url);
-    foreach ($ical->events() as $event) {
-        $start = date('Y-m-d', strtotime($event['DTSTART']));
-        $end = date('Y-m-d', strtotime($event['DTEND']));
-        // Mark each date in the range as booked
-        $current = $start;
-        while ($current < $end) {
-            $booked[] = $current;
-            $current = date('Y-m-d', strtotime("$current +1 day"));
-        }
+function getBookedDates() {
+    try {
+        // Your logic to fetch booked dates goes here
+        $dates = []; // Example placeholder
+        return $dates;
+    } catch (Exception $e) {
+        error_log('Error fetching booked dates: ' . $e->getMessage());
+        return []; // Return an empty array on error
     }
 }
-
-header('Content-Type: application/json');
-echo json_encode(array_values(array_unique($booked)));
-?>
