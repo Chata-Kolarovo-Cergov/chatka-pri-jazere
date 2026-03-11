@@ -3,8 +3,8 @@ require_once 'ical/class.iCalReader.php';
 
 // List of iCal URLs (add your Airbnb/Booking.com .ics links here)
 $icalUrls = [
-    'https://calendar.google.com/calendar/ical/marekholic0%40gmail.com/public/basic.ics',
-    // Add more .ics links if you have them
+    
+    'https://calendar.google.com/calendar/ical/marekholic0%40gmail.com/public/basic.ics',  // ✅ VAŠSKÝ GOOGLE CALENDAR
 ];
 
 $booked = [];
