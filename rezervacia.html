@@ -100,26 +100,68 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    let checkInPicker;
+    let checkOutPicker;
+    let bookedDates = [];
+    let isLoadingDates = false;
 
-    var checkOutPicker;
-
-    flatpickr("#check-in", {
-        dateFormat: "Y-m-d",
-        minDate: "today",
-        onChange: function(selectedDates, dateStr) {
-            if (selectedDates.length > 0) {
-                checkOutPicker.set('minDate', dateStr);
+    // 📌 KROK 1: Načítať obsadené dátumy z Google Calendar
+    console.log("🔄 Načítavam obsadené dátumy...");
+    
+    fetch('get-booked-dates.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-            calculatePrice();
-        }
-    });
+            return response.json();
+        })
+        .then(data => {
+            bookedDates = data;
+            console.log("✅ Obsadené dátumy načítané:", bookedDates);
+            initializeDatePickers();
+        })
+        .catch(error => {
+            console.error('❌ Chyba pri načítaní obsadených dátumov:', error);
+            // Inicializovať aj keď je chyba (bez zakázaných dátumov)
+            initializeDatePickers();
+        });
 
-    checkOutPicker = flatpickr("#check-out", {
-        dateFormat: "Y-m-d",
-        minDate: "today",
-        onChange: calculatePrice
-    });
+    function initializeDatePickers() {
+        console.log("⚙️ Inicializujem kalendár s obsadenými dátumami:", bookedDates);
+        
+        // 📌 KROK 2: Inicializovať Check-in kalendár
+        checkInPicker = flatpickr("#check-in", {
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            disable: bookedDates,  // 🔴 ZAKÁZAŤ OBSADENÉ DÁTUMY
+            onOpen: function(selectedDates, dateStr, instance) {
+                console.log("Otváram Check-in kalendár");
+            },
+            onChange: function(selectedDates, dateStr) {
+                if (selectedDates.length > 0) {
+                    // Nastaviť minimálny dátum pre Check-out
+                    const minCheckoutDate = new Date(selectedDates[0]);
+                    minCheckoutDate.setDate(minCheckoutDate.getDate() + 1);
+                    
+                    checkOutPicker.set('minDate', minCheckoutDate.toISOString().split('T')[0]);
+                    checkOutPicker.set('disable', bookedDates);
+                }
+                calculatePrice();
+            }
+        });
 
+        // 📌 KROK 3: Inicializovať Check-out kalendár
+        checkOutPicker = flatpickr("#check-out", {
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            disable: bookedDates,  // 🔴 ZAKÁZAŤ OBSADENÉ DÁTUMY
+            onChange: calculatePrice
+        });
+
+        console.log("✅ Kalendár je inicializovaný!");
+    }
+
+    // 📌 KROK 4: Funkcia na výpočet ceny
     function calculatePrice() {
         const checkIn = document.getElementById("check-in").value;
         const checkOut = document.getElementById("check-out").value;
@@ -148,8 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let pricePerNight;
 
-        // Špeciálne pravidlo:
-        // 1 dospelý + žiadne deti nad 6 rokov → 50 €
+        // Špeciálne pravidlo: 1 dospelý + žiadne deti nad 6 rokov → 50 €
         if (adults === 1 && kidsOver6 === 0) {
             pricePerNight = 50;
         } else {
@@ -175,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
