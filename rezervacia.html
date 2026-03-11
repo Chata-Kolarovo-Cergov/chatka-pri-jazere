@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let checkInPicker;
     let checkOutPicker;
     let bookedDates = [];
-    let isLoadingDates = false;
 
     // 📌 KROK 1: Načítať obsadené dátumy z Google Calendar
     console.log("🔄 Načítavam obsadené dátumy...");
@@ -122,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             console.error('❌ Chyba pri načítaní obsadených dátumov:', error);
-            // Inicializovať aj keď je chyba (bez zakázaných dátumov)
             initializeDatePickers();
         });
 
@@ -134,15 +132,10 @@ document.addEventListener("DOMContentLoaded", function() {
             dateFormat: "Y-m-d",
             minDate: "today",
             disable: bookedDates,  // 🔴 ZAKÁZAŤ OBSADENÉ DÁTUMY
-            onOpen: function(selectedDates, dateStr, instance) {
-                console.log("Otváram Check-in kalendár");
-            },
             onChange: function(selectedDates, dateStr) {
                 if (selectedDates.length > 0) {
-                    // Nastaviť minimálny dátum pre Check-out
                     const minCheckoutDate = new Date(selectedDates[0]);
                     minCheckoutDate.setDate(minCheckoutDate.getDate() + 1);
-                    
                     checkOutPicker.set('minDate', minCheckoutDate.toISOString().split('T')[0]);
                     checkOutPicker.set('disable', bookedDates);
                 }
@@ -216,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
