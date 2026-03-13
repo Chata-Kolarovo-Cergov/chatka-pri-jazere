@@ -91,13 +91,11 @@
     <input type="text" id="check-out" name="check-out" required>
 
 <p id="price-info" style="font-weight: bold; margin-top: 10px;"></p>
-    <label for="guests">Počet osôb:</label>
+    <label for="guests">Počet osôb (6–99+ r):</label>
     <input type="number" id="guests" name="guests" min="1" max="6" required>
     
-<label for="kids-under-6">Deti do 6 rokov:</label> 
+<label for="kids-under-6">Deti (0–6 r):</label> 
     <input type="number" id="kids-under-6" name="kids-under-6" min="0" max="6" value="0"> 
-    <label for="kids-over-6">Deti nad 6 rokov:</label> 
-    <input type="number" id="kids-over-6" name="kids-over-6" min="0" max="6" value="0">
     
     <label for="poznamka">Poznámka:</label>
     <textarea name="poznamka" id="poznamka" rows="4"></textarea>
@@ -177,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const checkOut = document.getElementById("check-out").value;
         const adults = parseInt(document.getElementById("guests").value) || 0;
         const kidsUnder6 = parseInt(document.getElementById("kids-under-6").value) || 0;
-        const kidsOver6 = parseInt(document.getElementById("kids-over-6").value) || 0;
+    
 
         if (!checkIn || !checkOut || adults === 0) return;
 
@@ -190,19 +188,16 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        const adultPrice = 30;
-        const kidOver6Price = 30;
-        let pricePerNight = (adults === 1 && kidsOver6 === 0) ? 50 : 
-                           (adults * adultPrice + kidsOver6 * kidOver6Price);
+        let pricePerNight = (adults === 1) ? 50 : adults * 30;
         
         const total = nights * pricePerNight;
         document.getElementById("price-info").innerText = 
-            `Počet nocí: ${nights} | Dospelí: ${adults} | Deti do 6 r.: ${kidsUnder6} | Deti nad 6 r.: ${kidsOver6} | Cena: ${total} €`;
+           `Počet nocí: ${nights} | Osoby (6–99+ r): ${adults} | Deti (0–6 r): ${kidsUnder6} | Cena: ${total} €`
+;
     }
 
     document.getElementById("guests").addEventListener("change", calculatePrice);
     document.getElementById("kids-under-6").addEventListener("change", calculatePrice);
-    document.getElementById("kids-over-6").addEventListener("change", calculatePrice);
 });
 </script>
 
