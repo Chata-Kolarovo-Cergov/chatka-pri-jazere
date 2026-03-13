@@ -95,7 +95,7 @@
     <label for="guests">Počet osôb (6–99+ r):</label>
     <input type="number" id="guests" name="guests" min="1" max="6" required>
     
-<label for="kids-under-6">Deti (0–6 r):</label> 
+<label for="kids-under-6">Deti (0–5 r):</label> 
     <input type="number" id="kids-under-6" name="kids-under-6" min="0" max="6" value="0"> 
     
     <label for="poznamka">Poznámka:</label>
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         const total = nights * pricePerNight;
         document.getElementById("price-info").innerText = 
-           `Počet nocí: ${nights} | Osoby (6–99+ r): ${adults} | Deti (0–6 r): ${kidsUnder6} | Cena: ${total} €`;
+           `Počet nocí: ${nights} | Osoby (6–99+ r): ${adults} | Deti (0–5 r): ${kidsUnder6} | Cena: ${total} €`;
       document.getElementById("final-price").value = total + " €";
 
     }
